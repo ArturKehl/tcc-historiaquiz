@@ -1,0 +1,12 @@
+const router=require("express").Router();
+const {auth,role}=require("../middleware/auth");
+const c=require("../controllers/studentController");
+router.use(auth,role("ALUNO"));
+router.get("/dashboard",c.dashboard);
+router.get("/quizzes",c.quizzes);
+router.get("/quizzes/:id",c.quiz);
+router.post("/quizzes/:id/submit",c.submitQuiz);
+router.get("/ranking",c.ranking);
+router.get("/conquistas",c.achievements);
+router.get("/historico",c.history);
+module.exports=router;

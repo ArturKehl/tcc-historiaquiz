@@ -1,0 +1,16 @@
+const router=require("express").Router();
+const {auth,role}=require("../middleware/auth");
+const c=require("../controllers/teacherController");
+router.use(auth,role("PROFESSOR"));
+router.get("/dashboard",c.dashboard);
+router.get("/questoes",c.questions);
+router.post("/questoes",c.createQuestion);
+router.put("/questoes/:id",c.updateQuestion);
+router.delete("/questoes/:id",c.deleteQuestion);
+router.get("/quizzes",c.quizzes);
+router.post("/quizzes",c.createQuiz);
+router.put("/quizzes/:id",c.updateQuiz);
+router.delete("/quizzes/:id",c.deleteQuiz);
+router.get("/alunos",c.students);
+router.get("/turmas",c.classes);
+module.exports=router;
